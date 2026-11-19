@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Lab — GTA 6 Cover Art Maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="app-header">
+  <div>
+    <h1>Neon Coast Cover Lab</h1>
+    <p class="tagline">Your photo, turned into a poster cover. Offline — photos never leave this machine.</p>
+  </div>
+  <div class="header-status" id="headerStatus" role="status">Loading sample photos…</div>
+</header>
+
+<main class="layout">
+  <aside class="controls" aria-label="Cover controls">
+
+    <section class="control-block" aria-labelledby="photosHeading">
+      <h2 id="photosHeading">1 · Photos</h2>
+      <div class="row">
+        <button id="addPhotosBtn" type="button">Add photos</button>
+        <input id="photoInput" type="file" accept="image/*" multiple hidden>
+        <button id="loadSamplesBtn" type="button">Load sample photos</button>
+      </div>
+      <div class="row">
+        <button id="useOnePhotoBtn" type="button">Use one photo everywhere</button>
+      </div>
+      <div id="photoList" class="photo-list" aria-label="Loaded photos"></div>
+      <p class="hint">Drop image files anywhere on the preview to add them.</p>
+    </section>
+
+    <section class="control-block" aria-labelledby="panelHeading">
+      <h2 id="panelHeading">2 · Panel</h2>
+      <div id="panelList" class="panel-list" aria-label="Panels"></div>
+      <label class="slider-label" for="zoomRange">Zoom <span id="zoomValue">1.0×</span></label>
+      <input id="zoomRange" type="range" min="0.5" max="3" step="0.05" value="1">
+      <div class="row">
+        <button id="fitBtn" type="button">Fit</button>
+        <button id="fillBtn" type="button">Fill</button>
+        <button id="resetPanelBtn" type="button">Reset panel</button>
+      </div>
+      <div class="row">
+        <button id="swapBtn" type="button">Swap with next panel</button>
+      </div>
+      <p class="hint">Click a panel in the preview to select it. Drag inside it to move the photo, scroll to zoom.</p>
+    </section>
+
+    <section class="control-block" aria-labelledby="lookHeading">
+      <h2 id="lookHeading">3 · Template &amp; Grade</h2>
+      <div id="templatePicker" class="template-picker" aria-label="Cover templates"></div>
+      <div id="gradePicker" class="grade-picker" aria-label="Color grades"></div>
+    </section>
+
+    <section class="control-block" aria-labelledby="wordsHeading">
+      <h2 id="wordsHeading">4 · Words</h2>
+      <label class="field-label" for="titleInput">Title</label>
+      <input id="titleInput" type="text" value="NEON COAST" maxlength="24">
+      <label class="field-label" for="subtitleInput">Subtitle</label>
+      <input id="subtitleInput" type="text" value="vice city nights" maxlength="40">
+      <label class="field-label" for="badgeInput">Badge</label>
+      <input id="badgeInput" type="text" value="EST. 2026 • VICE CITY" maxlength="24">
+      <label class="slider-label" for="starsRange">Heat stars <span id="starsValue">5</span></label>
+      <input id="starsRange" type="range" min="0" max="5" step="1" value="5">
+      <div class="row">
+        <button id="alignBtn" type="button">Title align: left</button>
+      </div>
+    </section>
+
+    <section class="control-block" aria-labelledby="exportHeading">
+      <h2 id="exportHeading">5 · Export</h2>
+      <div class="row">
+        <button id="exportSquareBtn" type="button">Square 1080×1080</button>
+        <button id="exportPortraitBtn" type="button">Portrait 1080×1350</button>
+      </div>
+      <div class="row">
+        <button id="exportWideBtn" type="button">Wide 1920×1080</button>
+        <button id="exportAllBtn" type="button">Export all 3 sizes</button>
+      </div>
+      <p class="hint">Exports are PNG files, rendered from the same cover you see in the preview.</p>
+    </section>
+
+  </aside>
+
+  <section class="preview-area" aria-label="Cover preview">
+    <div class="preview-wrap">
+      <canvas id="previewCanvas" width="640" height="360" role="img" aria-label="Cover preview"></canvas>
+    </div>
+    <div class="size-bar">
+      <span id="sizeLabel">Wide 1920×1080</span>
+      <button id="fitPreviewBtn" type="button">Fit preview</button>
+    </div>
+    <p id="statusLine" class="status-line" role="status">Ready.</p>
+  </section>
+</main>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
